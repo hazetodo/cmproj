@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#8D8A8A, #8D8A8A]">
+	<mx:Label x="163" y="92" text="Label"/>
+	<mx:Image source="assets/team02.jpg" width="362" height="244" top="20" horizontalCenter="0"/>
+	
+</mx:Application>
