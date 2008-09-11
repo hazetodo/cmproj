@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="org.print.*" xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width ="612" 
+	height="792" 
+	xmlns:exec="modules.reports.templates.executive.*">
+	<!-- REPORT LAYOUT -->
+	<exec:Header width="100%" showInAllPages="true"/>
+   <!--Body -->
+	<Body width="100%" height="100%">
+		<mx:Grid width="100%" height="59">
+			<mx:GridRow width="100%" height="100%">
+				<mx:GridItem width="192" height="100%">
+					<mx:Image id="image" width="189" height="55" scaleContent="true"/>
+				</mx:GridItem>
+				<mx:GridItem width="100%" height="56">
+					<mx:Label text="Executive Report" textAlign="left" width="100%" color="#000000" fontSize="18" id="title1"/>
+				</mx:GridItem>
+			</mx:GridRow>
+		</mx:Grid>
+		<PrintTextArea width="100%" id="myText" fontSize="10" textAlign="justify"  color="#000000"/>
+		<PrintComponent width="512" height="40"  verticalScrollPolicy="off">
+			<PrintComponent width="126" x="143" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#000000" backgroundColor="#E5E1E1">
+				<mx:Label x="1" y="1" text="Budget" color="#000000" fontWeight="bold" width="122" textAlign="center" id="h2Budget"/>
+			</PrintComponent>
+			<PrintComponent width="123" x="268" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#000000" backgroundColor="#E5E1E1">
+				<mx:Label x="1" y="1" text="Actual" color="#000000" fontWeight="bold" width="119" textAlign="center" id="h2Actual"/>
+			</PrintComponent>
+			<PrintComponent width="121" x="390" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#000000" backgroundColor="#E5E1E1">
+				<mx:Label x="10" y="1" text="Variance" color="#000000" fontWeight="bold" width="99" textAlign="center"/>
+			</PrintComponent>
+		</PrintComponent>	
+		<mx:PrintAdvancedDataGrid showHeaders="false" sizeToPage="true" 
+		  wordWrap="false" width="512" dataProvider="{dataArrayA}" fontSize="8" color="#000000" 
+		  variableRowHeight="false" rowHeight="15"  borderThickness=".7" borderStyle="solid" horizontalGridLineColor="#bcb9b9" >		
+			<mx:columns>
+				<mx:AdvancedDataGridColumn headerText="   "    dataField="desc" width="200" />
+				<mx:AdvancedDataGridColumn headerText=" Planned  " dataField="planned"  textAlign="center" width="176" />
+				<mx:AdvancedDataGridColumn headerText=" Actual   " dataField="actual"  textAlign="center" width="170" />
+				<mx:AdvancedDataGridColumn headerText=" Variance " dataField="dif"  textAlign="center" width="170" />
+			</mx:columns>
+		</mx:PrintAdvancedDataGrid>
+	
+		<PrintComponent width="512" height="40"  verticalScrollPolicy="off">
+			<PrintComponent width="30" x="0" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#030303" backgroundColor="#E5E1E1">
+				<mx:Label x="5" y="1" text="No" color="#000000" fontWeight="bold" id="h2No" height="16"/>
+			</PrintComponent>
+			<PrintComponent width="303" x="30" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#030303" backgroundColor="#E5E1E1">
+				<mx:Label x="2" y="1" text="Task Name" color="#000000" fontWeight="bold" width="169" id="h2TName" height="16"/>
+			</PrintComponent>
+			<PrintComponent width="60" x="332" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#000000" backgroundColor="#E5E1E1">
+				<mx:Label x="1" y="1" text="Budget" color="#000000" fontWeight="bold" width="100%" textAlign="center" id="h2Budget0" height="16"/>
+			</PrintComponent>
+			<PrintComponent width="60" x="391" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#000000" backgroundColor="#E5E1E1">
+				<mx:Label x="1" y="1" text="Actual" color="#000000" fontWeight="bold" width="100%" textAlign="center" id="h2Actual0" height="16"/>
+			</PrintComponent>
+			<PrintComponent width="60" x="451" height="20"  y="19" borderStyle="solid" borderThickness="1" borderColor="#000000" backgroundColor="#E5E1E1">
+				<mx:Label x="0" y="1" text="Complete" color="#000000" fontWeight="bold" width="100%" textAlign="center" height="16"/>
+			</PrintComponent>
+		</PrintComponent>	
+		<mx:PrintAdvancedDataGrid showHeaders="false" sizeToPage="true" 
+		  wordWrap="false" width="512" dataProvider="{dataArray2}" fontSize="8" color="#000000" 
+		  variableRowHeight="false" rowHeight="15"  borderThickness=".7" borderStyle="solid" horizontalGridLineColor="#bcb9b9" >
+			<mx:columns>
+				<mx:AdvancedDataGridColumn headerText="No    "  dataField="no" width="30" />
+				<mx:AdvancedDataGridColumn headerText="Nombre" dataField="task_name"  itemRenderer="modules.infoDirectory.tasknamerenderer" />
+				<mx:AdvancedDataGridColumn headerText="Budget" dataField="task_target_budget"  textAlign="right" width="60" />
+				<mx:AdvancedDataGridColumn headerText="Actual" dataField="task_actual_budget"  textAlign="right" width="60" />
+				<mx:AdvancedDataGridColumn headerText="Progreso" dataField="task_percent_complete"  textAlign="right" width="60" />
+			</mx:columns>
+		</mx:PrintAdvancedDataGrid>
+		<!--
+		<ReportDataGrid sizeToPage="true" wordWrap="true" width="100%" dataProvider="{dataArray2}" fontSize="14" color="#000000"/>
+		-->
+	</Body>
+	
+	<exec:Footer width="100%" showInFirstPage="true" showInMiddlePages="true" showInLastPage="true"/>
+	
+	<!-- DATAPROVIDERS -->
+	<mx:ArrayCollection id="dataArrayA">
+	    <mx:Object recordName="1" recordAmount="9.74 seconds" who="Asafa Powell" where="Rieti, Italy" when="9/9/2007"/>
+	</mx:ArrayCollection>
+	<mx:ArrayCollection id="dataArray2">
+	    <mx:Object recordName="1" recordAmount="9.74 seconds" who="Asafa Powell" where="Rieti, Italy" when="9/9/2007"/>
+	</mx:ArrayCollection>	
+		
+	<mx:Script>
+		<![CDATA[
+			import modules.infoDirectory.tasknamerenderer;
+			import mx.controls.Text;
+			
+			public override function loadData() : void
+			{
+				image.source =dataProvider.logo;
+				image.validateNow();
+								
+				myText.htmlText = dataProvider.text;
+			
+				myText.htmlText += "\n<b> Summary:</b> \n                                                              	                      <b>	Project Budget: </b> "+dataProvider.oData.tot_budget;
+		
+				this.dataArrayA = ArrayCollection(dataProvider.oData.xArrayA);	
+			
+			}
+		]]>
+	</mx:Script>
+</Report>
